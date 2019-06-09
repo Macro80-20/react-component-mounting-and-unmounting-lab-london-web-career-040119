@@ -1,29 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import Pancake from './Pancake';
 
-class Game extends React.Component {
+export default class Game extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
+    state = {
       time: undefined,
+      //e.g. 
+      // "Sun Jun 09 2019 09:46:07 GMT+0100 (British Summer Time)1560070849859" , 
+      // then we addpankcake again it will look lie 
+      // "Sun Jun 09 2019 09:46:07 GMT+0100 (British Summer Time)15600708892901560070890490"
       pancakes: [],
       cooked: 0,
       burnt: 0,
       raw: 0
-    };
-  }
+    }
 
   // TODO: create a componentDidMount() which will set the current time
   
+  componentDidMount() {
+    this.setCurrentTime()
+  }
+
   setCurrentTime = () => {
     this.setState({ time: new Date(Date.now())});
   }
 
   addPancake = () => {
-    this.setState({
+    this.setState({ // our time initalized with a date , concat add this to the string,each time adding to the string 
       pancakes: this.state.pancakes.concat(Date.now())
     });
   }
@@ -63,4 +67,4 @@ class Game extends React.Component {
   }
 }
 
-export default Game;
+
